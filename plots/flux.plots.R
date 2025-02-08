@@ -12,6 +12,8 @@ library(plotrix)     # for std.error function
 
 
 
+setwd(dir = "~/OneDrive - Harper Adams University/Data/GHG field experiment/")
+
 
 ## 01 LOAD DATA ####
 dat <- read.csv(file = "data/processed.data/gc.data.all.days.csv")
@@ -1103,6 +1105,7 @@ n2o <- expression(N[2]*O-CO[2]~equiv)
 png(paste("plots/gwp/", "gwp.barplot", ".png", sep=""),
     width=1000, height=800, res=150)
 
+a <-
 ggplot(data = ghg.df,
        aes(x = Treatment, 
            y = co2.equiv,
@@ -1137,6 +1140,8 @@ title_exp_long <- expression(Yield~Scaled~GWP~(kg~CO[2]-eq~ha^{-1}~t^{-1}~yield)
 png(paste("plots/gwp/", "ys.gwp.barplot", ".png", sep=""),
     width=1000, height=800, res=150)
 
+
+b <-
  ggplot(data = ghg.df,
        aes(x = Treatment, 
            y = YS.GWP,
@@ -1160,6 +1165,23 @@ png(paste("plots/gwp/", "ys.gwp.barplot", ".png", sep=""),
   theme(legend.position = "bottom") 
 
 dev.off()
+
+
+
+
+ggarrange(a,b, 
+          ncol = 2, 
+          common.legend = TRUE, 
+          legend = "bottom", labels = c("A","B"))
+
+
+ggsave(filename = "plots/gwp/gwp_joint_plot.png", width = 11, height = 4.5)
+
+
+
+
+
+
 
 
 
